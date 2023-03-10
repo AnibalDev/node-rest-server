@@ -7,6 +7,7 @@ const { usuariosGet,
         usuariosPatch } = require('../controllers/usuarios');
 const { isValidRole, emailExist, userIdExist } = require('../helpers/bd-validators');
 const { validateFields } = require('../middlewares/validate-fields');
+const { validateJWT } = require('../middlewares/validate-jwt');
 
 const router = Router();
 
@@ -26,6 +27,7 @@ router.post('/', [
 ],usuariosPost );
 router.patch('/', usuariosPatch);
 router.delete('/:id',[
+    validateJWT,
     check('id', 'El ID no es valido').isMongoId().bail().custom(userIdExist),
     validateFields,
 ], usuariosDelete);
