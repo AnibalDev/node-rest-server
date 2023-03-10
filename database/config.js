@@ -2,14 +2,12 @@ const mongoose = require('mongoose');
 
 const dbConnection = async() => {
     try {
-        console.log(process.env.MONGODB_ATLAS);
         await mongoose.connect(process.env.MONGODB_ATLAS, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true,
+            //useNewUrlParser: true,
+            //useUnifiedTopology: true,
             //useCreateIndex: true,
             //useFindAndModify: false
         })
-
         console.log('Connected')
         
     } catch (error) {
